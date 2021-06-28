@@ -23,8 +23,6 @@ const useStyles = makeStyles({
     },
 });
 
-const onClickDetail = () => {};
-
 export default function OutlinedCard() {
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
@@ -38,17 +36,17 @@ export default function OutlinedCard() {
                         color="textSecondary"
                         gutterBottom
                     >
-                        <p style={{ color: "red" }}>단어</p>
+                        <span style={{ color: "red" }}>단어</span>
                     </Typography>
                     <Typography variant="h5" component="h2">
                         ㅎ1ㅎ1
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
-                        <p style={{ color: "red" }}>설명</p>
+                        <span style={{ color: "red" }}>설명</span>
                     </Typography>
                     <Typography variant="body2" component="p">
                         히히를 변형한 단어. 숫자1을 "ㅣ"로 쓴다.
-                        <p style={{ color: "red" }}>예제</p>
+                        <span style={{ color: "red" }}>예제</span>
                         {'"a benevolent smile"'}
                     </Typography>
                 </CardContent>
