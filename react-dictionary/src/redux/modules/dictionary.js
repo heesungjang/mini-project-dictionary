@@ -1,3 +1,8 @@
+import { firestore } from "../../firebase";
+
+// 파이어 베이스 db 레프런스 생성
+const dictionaryRef = firestore.collection("dictionary");
+
 // 1. Actions
 const LOAD = "dictionary/LOAD";
 
