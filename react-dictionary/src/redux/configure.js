@@ -1,7 +1,7 @@
-import thunk from "react-thunk";
+import thunk from "redux-thunk";
 import dictionary from "./modules/dictionary";
 import { createBrowserHistory } from "history";
-import { createStore, combineReducers, applyMiddleware } from " redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 
 export const history = createBrowserHistory();
 

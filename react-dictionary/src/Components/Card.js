@@ -23,7 +23,9 @@ const useStyles = makeStyles({
     },
 });
 
-export default function OutlinedCard() {
+export default function OutlinedCard({
+    dictionaryList: { id, word, desc, example },
+}) {
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
 
@@ -39,15 +41,15 @@ export default function OutlinedCard() {
                         <span style={{ color: "red" }}>단어</span>
                     </Typography>
                     <Typography variant="h5" component="h2">
-                        ㅎ1ㅎ1
+                        {word}
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
                         <span style={{ color: "red" }}>설명</span>
                     </Typography>
                     <Typography variant="body2" component="p">
-                        히히를 변형한 단어. 숫자1을 "ㅣ"로 쓴다.
+                        {desc}
                         <span style={{ color: "red" }}>예제</span>
-                        {'"a benevolent smile"'}
+                        {example}
                     </Typography>
                 </CardContent>
                 <CardActions>
