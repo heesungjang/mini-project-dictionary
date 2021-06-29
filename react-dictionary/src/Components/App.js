@@ -5,9 +5,16 @@ import { firestore } from "../firebase";
 
 class App extends Component {
     async componentDidMount() {
-        const dictionary = firestore.collection("dictionary");
-        const doc = await dictionary.doc("5tG5YjltCiX9imZY8ue0").get();
-        console.log(doc.data());
+        const dictionaryRef = firestore.collection("dictionary");
+        const allDocs = await dictionaryRef.get();
+        let dictionary_data = [];
+        for (const doc of allDocs.docs) {
+            dictionary_data = [
+                ...dictionary_data,
+                { id: doc.id, ...doc.data() },
+            ];
+        }
+        console.log(dictionary_data);
     }
     render() {
         return (
