@@ -2,7 +2,7 @@ import Router from "./Router";
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import { loadDictionary, loadDictionaryFB } from "../redux/modules/dictionary";
+import { loadDictionaryFB } from "../redux/modules/dictionary";
 
 const mapStateToProps = (state) => {
     return { dictionary_list: state.dictionary.list };

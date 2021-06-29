@@ -45,14 +45,19 @@ const HomePresenter = (props) => {
                         }}
                     >
                         <div>
-                            {props.dictionaryList.map((dictionary, idx) => {
-                                return (
-                                    <Card
-                                        key={idx}
-                                        dictionaryList={dictionary}
-                                    />
-                                );
-                            })}
+                            {props.dictionaryList
+                                .reverse()
+                                .map((dictionary, idx) => {
+                                    return (
+                                        <Card
+                                            key={idx}
+                                            dictionaryList={{
+                                                ...dictionary,
+                                                index: idx,
+                                            }}
+                                        />
+                                    );
+                                })}
                         </div>
                     </Container>
                 ) : (

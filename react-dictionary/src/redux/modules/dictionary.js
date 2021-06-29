@@ -1,4 +1,5 @@
 import { firestore } from "../../firebase";
+import history from "../../history";
 
 // 파이어 베이스 db 레프런스 생성
 const dictionaryRef = firestore.collection("dictionary").orderBy("created");
@@ -69,9 +70,17 @@ export const addDictionaryFB = (dictionary) => {
     };
 };
 
-export const updateDictionaryFB = (index) => {
+export const updateDictionaryFB = (index, newDictionary) => {
     return function (dispatch, getState) {
         const previous_dictionary_data = getState().dictionary.list[index];
+
+        dictionaryRefAdd
+            .doc(previous_dictionary_data.id)
+            .update(newDictionary)
+            .then((docRef) => {
+                dispatch(updateDictionary(newDictionary));
+                history.push("/");
+            });
     };
 };
 
@@ -89,6 +98,13 @@ export default function reducer(state = initialState, action = {}) {
             const new_dictionary_list = [...state.list, action.dictionary];
             return { list: new_dictionary_list };
         }
+        case "dictionary/UPDATE": {
+            if (action.dictionary.length > 0) {
+                return { list: action.dictionary };
+            }
+            return state;
+        }
+        // eslint-disable-next-line no-fallthrough
         default:
             return state;
     }

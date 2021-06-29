@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -24,10 +25,9 @@ const useStyles = makeStyles({
 });
 
 export default function OutlinedCard({
-    dictionaryList: { id, word, desc, example },
+    dictionaryList: { word, desc, example, index },
 }) {
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
 
     return (
         <div style={{ marginBottom: "20px" }}>
@@ -66,7 +66,14 @@ export default function OutlinedCard({
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button variant="contained">Edit</Button>
+                    <Button variant="contained">
+                        <Link
+                            style={{ color: "inherit", textDecoration: "none" }}
+                            to={`/edit/${index}`}
+                        >
+                            Edit
+                        </Link>
+                    </Button>
                     <Button variant="contained" color="secondary">
                         Delete
                     </Button>
