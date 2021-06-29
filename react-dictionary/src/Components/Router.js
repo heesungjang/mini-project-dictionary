@@ -6,7 +6,6 @@ import {
     Redirect,
     Switch,
 } from "react-router-dom";
-import Container from "@material-ui/core/Container";
 import Home from "../Routes/Home";
 import Detail from "../Routes/Detail";
 import Add from "../Routes/Add";
