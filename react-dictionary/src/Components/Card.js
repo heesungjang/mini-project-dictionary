@@ -35,21 +35,34 @@ export default function OutlinedCard({
                 <CardContent>
                     <Typography
                         className={classes.title}
-                        color="textSecondary"
                         gutterBottom
+                        variant="h6"
                     >
-                        <span style={{ color: "red" }}>단어</span>
+                        <span style={{ color: "#273c75", fontWeight: "700" }}>
+                            단어:
+                        </span>
                     </Typography>
-                    <Typography variant="h5" component="h2">
+                    <Typography variant="h6" component="h2">
                         {word}
+                        <hr style={{ width: "98%" }} />
                     </Typography>
-                    <Typography className={classes.pos} color="textSecondary">
-                        <span style={{ color: "red" }}>설명</span>
+                    <Typography className={classes.pos}>
+                        <span style={{ color: "#273c75", fontWeight: "600" }}>
+                            설명:
+                        </span>
                     </Typography>
-                    <Typography variant="body2" component="p">
-                        {desc}
-                        <span style={{ color: "red" }}>예제</span>
-                        {example}
+                    <div>{desc}</div>
+                    <Typography
+                        variant="body2"
+                        component="p"
+                        style={{ margin: "7px 0" }}
+                    >
+                        <span style={{ color: "#273c75", fontWeight: "600" }}>
+                            예제:
+                        </span>
+                    </Typography>
+                    <Typography>
+                        <span>{example}</span>
                     </Typography>
                 </CardContent>
                 <CardActions>

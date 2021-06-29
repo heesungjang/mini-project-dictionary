@@ -2,9 +2,12 @@ import { firestore } from "../../firebase";
 
 // 파이어 베이스 db 레프런스 생성
 const dictionaryRef = firestore.collection("dictionary").orderBy("created");
+const dictionaryRefAdd = firestore.collection("dictionary");
 
 //  Actions
 const LOAD = "dictionary/LOAD";
+const CREATE = "dictionary/CREATE";
+const UPDATE = "dictionary/UPDATE";
 
 //  Initial State
 const initialState = {
@@ -27,6 +30,14 @@ export const loadDictionary = (dictionary) => {
     return { type: LOAD, dictionary };
 };
 
+export const createDictionary = (dictionary) => {
+    return { type: CREATE, dictionary };
+};
+
+export const updateDictionary = (dictionary) => {
+    return { type: UPDATE, dictionary };
+};
+
 export const loadDictionaryFB = () => {
     return async (dispatch) => {
         const allDocs = await dictionaryRef.get();
@@ -42,6 +53,28 @@ export const loadDictionaryFB = () => {
     };
 };
 
+export const addDictionaryFB = (dictionary) => {
+    return function (dispatch) {
+        let dictionary_data = {
+            word: dictionary.word,
+            desc: dictionary.desc,
+            example: dictionary.example,
+            created: dictionary.created,
+        };
+
+        dictionaryRefAdd.add(dictionary_data).then((docRef) => {
+            dictionary_data = { ...dictionary_data, id: docRef.id };
+            dispatch(createDictionary(dictionary_data));
+        });
+    };
+};
+
+export const updateDictionaryFB = (index) => {
+    return function (dispatch, getState) {
+        const previous_dictionary_data = getState().dictionary.list[index];
+    };
+};
+
 // Reducer
 export default function reducer(state = initialState, action = {}) {
     // eslint-disable-next-line default-case
@@ -51,6 +84,10 @@ export default function reducer(state = initialState, action = {}) {
                 return { list: action.dictionary };
             }
             return state;
+        }
+        case "dictionary/CREATE": {
+            const new_dictionary_list = [...state.list, action.dictionary];
+            return { list: new_dictionary_list };
         }
         default:
             return state;

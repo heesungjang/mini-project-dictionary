@@ -6,9 +6,10 @@ import {
     Redirect,
     Switch,
 } from "react-router-dom";
-
+import Container from "@material-ui/core/Container";
 import Home from "../Routes/Home";
 import Detail from "../Routes/Detail";
+import Add from "../Routes/Add";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => (
@@ -16,7 +17,8 @@ export default () => (
         <>
             <Switch>
                 <Route path="/" exact component={Home} />
-                <Route path="/detail/:id" exact component={Detail} />
+                <Route path="/add" component={Add} />
+                <Route path="/edit/:id" exact component={Detail} />
             </Switch>
         </>
     </Router>

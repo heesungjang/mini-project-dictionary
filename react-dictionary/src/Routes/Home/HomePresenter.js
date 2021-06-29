@@ -1,56 +1,79 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import Button from "../../Components/Button";
+
 import Loader from "../../Components/Loader";
 import Card from "../../Components/Card";
 import Container from "@material-ui/core/Container";
-import Icon from "@material-ui/core/Icon";
+
+const SLink = styled(Link)`
+    color: inherit;
+    text-decoration: none;
+`;
 
 const HomePresenter = (props) => {
     return (
-        <>
-            {props.dictionaryList[0].id ? (
-                <Container fixed>
-                    <Container maxWidth="sm">
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                            }}
-                        >
-                            <h1>✏️ Dictionary</h1>
-                            <Icon
-                                style={{
-                                    fontSize: "40px",
-                                }}
-                            >
-                                ⨁
-                            </Icon>
-                        </div>
-                        {props.dictionaryList.map((dictionary, idx) => {
-                            return (
-                                <Card key={idx} dictionaryList={dictionary} />
-                            );
-                        })}
-                    </Container>
-                </Container>
-            ) : (
-                <Container>
-                    <div
+        <Container
+            maxWidth="sm"
+            style={{ border: "2px solid #bdc3c7", borderRadius: "2rem" }}
+        >
+            <Container
+                style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                }}
+            >
+                <h1>✏️ Dictionary</h1>
+                <SLink
+                    to="/add"
+                    style={{
+                        right: "0",
+                    }}
+                >
+                    <Button />
+                </SLink>
+            </Container>
+            <div>
+                {props.dictionaryList[0].id ? (
+                    <Container
+                        maxWidth="sm"
                         style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            height: "100vh",
-                            width: "100vw",
+                            height: "95vh",
+                            overflow: "overlay",
+                            position: "relative",
                         }}
                     >
                         <div>
-                            <Loader />
+                            {props.dictionaryList.map((dictionary, idx) => {
+                                return (
+                                    <Card
+                                        key={idx}
+                                        dictionaryList={dictionary}
+                                    />
+                                );
+                            })}
                         </div>
-                    </div>
-                </Container>
-            )}
-        </>
+                    </Container>
+                ) : (
+                    <Container>
+                        <Container
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                height: "100vh",
+                                width: "100vw",
+                            }}
+                        >
+                            <div>
+                                <Loader />
+                            </div>
+                        </Container>
+                    </Container>
+                )}
+            </div>
+        </Container>
     );
 };
 
