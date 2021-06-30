@@ -6,7 +6,9 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
+import { deleteDictionaryFB } from "../redux/modules/dictionary";
+import { useDispatch } from "react-redux";
+import history from "../history";
 const useStyles = makeStyles({
     root: {
         minWidth: 275,
@@ -28,7 +30,7 @@ export default function OutlinedCard({
     dictionaryList: { word, desc, example, index },
 }) {
     const classes = useStyles();
-
+    const dispatch = useDispatch();
     return (
         <div style={{ marginBottom: "20px" }}>
             <Card className={classes.root} variant="outlined">
@@ -74,7 +76,13 @@ export default function OutlinedCard({
                             Edit
                         </Link>
                     </Button>
-                    <Button variant="contained" color="secondary">
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => {
+                            dispatch(deleteDictionaryFB(index));
+                        }}
+                    >
                         Delete
                     </Button>
                 </CardActions>

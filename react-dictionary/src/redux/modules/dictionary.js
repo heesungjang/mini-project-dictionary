@@ -89,6 +89,20 @@ export const updateDictionaryFB = (index, newDictionary) => {
     };
 };
 
+export const deleteDictionaryFB = (index) => {
+    return function (dispatch, getState) {
+        const _old_dictionary_data = getState().dictionary.list[index];
+
+        dictionaryRefAdd
+            .doc(_old_dictionary_data.id)
+            .delete()
+            .then((docRef) => {
+                dispatch(deleteDictionary(index));
+                history.go(0);
+            });
+    };
+};
+
 // Reducer
 export default function reducer(state = initialState, action = {}) {
     // eslint-disable-next-line default-case
@@ -108,6 +122,14 @@ export default function reducer(state = initialState, action = {}) {
                 return { list: action.dictionary };
             }
             return state;
+        }
+        case "dictionary/Delete": {
+            const dictionary_list = state.list.filter((l, idx) => {
+                if (idx !== action.index) {
+                    return l;
+                }
+            });
+            return { list: dictionary_list };
         }
         // eslint-disable-next-line no-fallthrough
         default:
