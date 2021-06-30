@@ -9,6 +9,7 @@ const dictionaryRefAdd = firestore.collection("dictionary");
 const LOAD = "dictionary/LOAD";
 const CREATE = "dictionary/CREATE";
 const UPDATE = "dictionary/UPDATE";
+const DELETE = "dictionary/DELETE";
 
 //  Initial State
 const initialState = {
@@ -37,6 +38,10 @@ export const createDictionary = (dictionary) => {
 
 export const updateDictionary = (dictionary) => {
     return { type: UPDATE, dictionary };
+};
+
+export const deleteDictionary = (dictionary) => {
+    return { type: DELETE, dictionary };
 };
 
 export const loadDictionaryFB = () => {

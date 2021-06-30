@@ -3,6 +3,7 @@ import firebase from "firebase/app";
 
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
+import styled from "styled-components";
 
 const DetailPresenter = ({ word, desc, example, update }) => {
     const [inputWord, setInputWord] = useState(word);
@@ -29,36 +30,63 @@ const DetailPresenter = ({ word, desc, example, update }) => {
         update(new_dictionary);
     };
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                단어
-                <input
-                    name="word"
-                    type="text"
-                    value={inputWord}
-                    onChange={handleChange}
-                />
-                <br />
-                설명
-                <input
-                    name="desc"
-                    type="text"
-                    value={inputDesc}
-                    onChange={handleChange}
-                />
-                <br />
-                예제
-                <input
-                    name="example"
-                    type="text"
-                    value={inputExample}
-                    onChange={handleChange}
-                />
-                <br />
-                <button type="submit">Edit</button>
-            </div>
-        </form>
+        <Container>
+            <Container
+                maxWidth="sm"
+                style={{
+                    maxWidth: "600px",
+                    border: "2px solid #bdc3c7",
+                    borderRadius: "2rem",
+                    padding: "30px",
+                }}
+            >
+                <div>
+                    <h1>✏️ Edit Dictionary</h1>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            단어
+                            <Input
+                                name="word"
+                                type="text"
+                                value={inputWord}
+                                onChange={handleChange}
+                            />
+                            <br />
+                            설명
+                            <Input
+                                name="desc"
+                                type="text"
+                                value={inputDesc}
+                                onChange={handleChange}
+                            />
+                            <br />
+                            예제
+                            <Input
+                                name="example"
+                                type="text"
+                                value={inputExample}
+                                onChange={handleChange}
+                            />
+                            <br />
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                type="submit"
+                            >
+                                Edit
+                            </Button>
+                        </div>
+                    </form>
+                </div>
+            </Container>
+        </Container>
     );
 };
+
+const Input = styled.input`
+    margin-bottom: 80px;
+    padding: 10px;
+    width: 80%;
+`;
 
 export default DetailPresenter;
