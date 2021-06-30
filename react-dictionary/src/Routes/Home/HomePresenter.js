@@ -19,7 +19,8 @@ const HomePresenter = (props) => {
             style={{
                 border: "2px solid #bdc3c7",
                 borderRadius: "2rem",
-                height: "85vh",
+                height: "80vh",
+                margin: "70px auto",
             }}
         >
             <Container
@@ -43,9 +44,9 @@ const HomePresenter = (props) => {
                     <Container
                         maxWidth="sm"
                         style={{
-                            height: "72vh",
-                            overflow: "overlay",
                             position: "relative",
+                            overflow: "overlay",
+                            height: "60vh",
                         }}
                     >
                         <div>
