@@ -16,7 +16,11 @@ const HomePresenter = (props) => {
     return (
         <Container
             maxWidth="sm"
-            style={{ border: "2px solid #bdc3c7", borderRadius: "2rem" }}
+            style={{
+                border: "2px solid #bdc3c7",
+                borderRadius: "2rem",
+                height: "85vh",
+            }}
         >
             <Container
                 style={{
@@ -39,7 +43,7 @@ const HomePresenter = (props) => {
                     <Container
                         maxWidth="sm"
                         style={{
-                            height: "95vh",
+                            height: "72vh",
                             overflow: "overlay",
                             position: "relative",
                         }}
